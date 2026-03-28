@@ -5,17 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dexitcards — Coming Soon</title>
   <meta name="description" content="Your collection is a portfolio. Dexitcards is a new way to track, share, and understand your card collection." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0a0f;
-      --surface: #13131a;
-      --border: rgba(255,255,255,0.08);
-      --accent: #6366f1;
-      --text-primary: #f4f4f5;
-      --text-secondary: #71717a;
-      --text-muted: #3f3f46;
+      --bg:               hsl(210, 18%, 8%);
+      --surface:          hsl(220, 18%, 10%);
+      --border:           hsl(220, 15%, 18%);
+      --primary:          hsl(155, 70%, 45%);
+      --accent:           hsl(185, 60%, 50%);
+      --text-primary:     hsl(210, 20%, 92%);
+      --text-secondary:   hsl(215, 15%, 55%);
+      --text-muted:       hsl(220, 12%, 30%);
     }
 
     html, body { height: 100%; }
@@ -23,7 +27,7 @@
     body {
       background-color: var(--bg);
       color: var(--text-primary);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -39,9 +43,9 @@
       top: -20%;
       left: 50%;
       transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, hsl(155 70% 45% / 0.08) 0%, transparent 65%);
       pointer-events: none;
       z-index: 0;
     }
@@ -64,19 +68,20 @@
     .logo-mark {
       width: 36px;
       height: 36px;
-      background: var(--accent);
+      background: var(--primary);
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 18px;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.5px;
-      box-shadow: 0 0 24px rgba(99,102,241,0.4);
+      font-weight: 700;
+      color: hsl(220, 20%, 7%);
+      box-shadow: 0 0 28px hsl(155 70% 45% / 0.35);
     }
 
     .logo-text {
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 1.1rem;
       font-weight: 600;
       color: var(--text-primary);
@@ -99,22 +104,23 @@
     }
 
     .card-stack .card:nth-child(1) {
-      background: linear-gradient(135deg, #1c1c28 0%, #16162a 100%);
+      background: hsl(220, 18%, 9%);
       transform: rotate(-6deg) translate(-8px, 4px);
     }
 
     .card-stack .card:nth-child(2) {
-      background: linear-gradient(135deg, #1e1e2e 0%, #18182e 100%);
+      background: hsl(220, 18%, 10%);
       transform: rotate(-2deg) translate(-2px, 1px);
     }
 
     .card-stack .card:nth-child(3) {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16162a 100%);
-      border-color: rgba(99,102,241,0.3);
+      background: hsl(220, 18%, 11%);
+      border-color: hsl(155 70% 45% / 0.25);
       transform: rotate(2deg);
     }
 
     .headline {
+      font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(2rem, 5vw, 2.75rem);
       font-weight: 700;
       line-height: 1.15;
@@ -123,7 +129,12 @@
       margin-bottom: 1rem;
     }
 
-    .headline .highlight { color: var(--accent); }
+    .headline .highlight {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
     .subhead {
       font-size: 1.05rem;
@@ -143,23 +154,25 @@
       flex: 1;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 0.75rem;
       padding: 0.75rem 1rem;
       color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
       font-size: 0.95rem;
       outline: none;
       transition: border-color 0.2s;
     }
 
     .notify-form input[type="email"]::placeholder { color: var(--text-muted); }
-    .notify-form input[type="email"]:focus { border-color: var(--accent); }
+    .notify-form input[type="email"]:focus { border-color: var(--primary); }
 
     .notify-form button {
-      background: var(--accent);
-      color: #fff;
+      background: var(--primary);
+      color: hsl(220, 20%, 7%);
       border: none;
-      border-radius: 8px;
+      border-radius: 0.75rem;
       padding: 0.75rem 1.25rem;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 0.95rem;
       font-weight: 600;
       cursor: pointer;
@@ -167,7 +180,7 @@
       transition: opacity 0.2s, transform 0.1s;
     }
 
-    .notify-form button:hover { opacity: 0.9; }
+    .notify-form button:hover { opacity: 0.88; }
     .notify-form button:active { transform: scale(0.98); }
 
     .notify-note {
@@ -178,12 +191,12 @@
 
     .success-msg {
       display: none;
-      background: rgba(99,102,241,0.1);
-      border: 1px solid rgba(99,102,241,0.25);
-      border-radius: 8px;
+      background: hsl(155 70% 45% / 0.08);
+      border: 1px solid hsl(155 70% 45% / 0.25);
+      border-radius: 0.75rem;
       padding: 0.75rem 1rem;
       font-size: 0.9rem;
-      color: var(--accent);
+      color: var(--primary);
       margin-bottom: 3rem;
     }
 
@@ -226,6 +239,7 @@
 </head>
 <body>
   <div class="container">
+
     <div class="logo">
       <div class="logo-mark">D</div>
       <span class="logo-text">dexitcards</span>
@@ -240,8 +254,8 @@
     <h1 class="headline">Your collection<br>is a <span class="highlight">portfolio.</span></h1>
 
     <p class="subhead">
-      Dex your cards in seconds. See what you’ve got,<br>
-      what it’s worth, and what to do next.
+      Dex your cards in seconds. See what you've got,<br>
+      what it's worth, and what to do next.
     </p>
 
     <form class="notify-form" id="notifyForm" onsubmit="handleSubmit(event)">
@@ -251,7 +265,7 @@
     <p class="notify-note">Early access coming soon. No spam.</p>
 
     <div class="success-msg" id="successMsg">
-      You’re on the list. We’ll let you know when it’s ready.
+      You're on the list. We'll let you know when it's ready.
     </div>
 
     <div class="features">
@@ -266,6 +280,7 @@
       &copy; 2026 Dexitcards &nbsp;&middot;&nbsp;
       <a href="mailto:hello@dexitcards.com">hello@dexitcards.com</a>
     </p>
+
   </div>
 
   <script>
