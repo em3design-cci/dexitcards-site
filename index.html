@@ -58,65 +58,10 @@
       text-align: center;
     }
 
-    .logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+    .site-logo {
+      height: 48px;
+      width: auto;
       margin-bottom: 3rem;
-    }
-
-    .logo-mark {
-      width: 36px;
-      height: 36px;
-      background: var(--primary);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      color: hsl(220, 20%, 7%);
-      box-shadow: 0 0 28px hsl(155 70% 45% / 0.35);
-    }
-
-    .logo-text {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      letter-spacing: -0.01em;
-    }
-
-    .card-stack {
-      position: relative;
-      width: 72px;
-      height: 100px;
-      margin: 0 auto 3rem;
-    }
-
-    .card-stack .card {
-      position: absolute;
-      width: 72px;
-      height: 100px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-    }
-
-    .card-stack .card:nth-child(1) {
-      background: hsl(220, 18%, 9%);
-      transform: rotate(-6deg) translate(-8px, 4px);
-    }
-
-    .card-stack .card:nth-child(2) {
-      background: hsl(220, 18%, 10%);
-      transform: rotate(-2deg) translate(-2px, 1px);
-    }
-
-    .card-stack .card:nth-child(3) {
-      background: hsl(220, 18%, 11%);
-      border-color: hsl(155 70% 45% / 0.25);
-      transform: rotate(2deg);
     }
 
     .headline {
@@ -232,6 +177,7 @@
     .footer a:hover { color: var(--text-secondary); }
 
     @media (max-width: 420px) {
+      .site-logo { height: 40px; }
       .notify-form { flex-direction: column; }
       .notify-form button { width: 100%; }
     }
@@ -240,10 +186,7 @@
 <body>
   <div class="container">
 
-    <div class="logo">
-      <div class="logo-mark">D</div>
-      <span class="logo-text">dexitcards</span>
-    </div>
+    <img src="logo_dexit_header.svg" alt="Dexitcards" class="site-logo" />
 
     <h1 class="headline">Your collection<br>is a <span class="highlight">portfolio.</span></h1>
 
