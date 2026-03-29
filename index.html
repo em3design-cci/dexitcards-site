@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Dexitcards — Coming Soon</title>
+  <title>Dexitcards · Coming Soon</title>
   <meta name="description" content="Your collection is a portfolio. Dexitcards is a new way to track, share, and understand your card collection." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -265,7 +265,7 @@
       margin-top: 0;
     }
 
-    /* Mockup: two pills on row one, third centered below — hidden for now */
+    /* Mockup: two pills on row one, third centered below (hidden for now) */
     .features {
       display: none;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -489,7 +489,7 @@
           form.style.display = 'none';
           success.style.display = 'block';
         } else if (res.status === 409) {
-          // Duplicate — still show success, just softer message
+          // Duplicate: still show success, softer message
           success.textContent = "You're already on the list. We'll be in touch!";
           form.style.display = 'none';
           success.style.display = 'block';
@@ -500,7 +500,7 @@
         button.disabled = false;
         button.textContent = 'Get Early Access';
         input.style.borderColor = 'hsl(0 70% 55% / 0.6)';
-        input.placeholder = 'Something went wrong — try again';
+        input.placeholder = 'Something went wrong. Try again';
         setTimeout(() => {
           input.style.borderColor = '';
           input.placeholder = 'Enter your email';
