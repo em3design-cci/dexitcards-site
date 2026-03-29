@@ -229,7 +229,14 @@
         0 4px 14px rgba(34, 211, 166, 0.25);
     }
 
-    /* One “small” size: note, pills, footer, success banner */
+    .notify-form button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      animation: none;
+      transform: none;
+    }
+
+    /* One "small" size: note, pills, footer, success banner */
     .notify-note {
       font-size: var(--text-sm);
       color: var(--text-muted);
@@ -413,7 +420,7 @@
     <h1 class="headline">Know your collection.<br><span class="highlight">Find your next card.</span></h1>
 
     <p class="subhead">
-      Snap a photo and we’ll do the rest.   
+      Snap a photo and we'll do the rest.   
     </p>
 
     <div class="cta-stack">
@@ -435,7 +442,7 @@
     <div class="features">
       <span class="pill">Dex your cards in seconds</span>
       <span class="pill">See real-time values</span>
-      <span class="pill">Find cards you’ll love</span>
+      <span class="pill">Find cards you'll love</span>
     </div>
 
     <p class="footer">
@@ -446,14 +453,53 @@
   </div>
 
   <script>
-    function handleSubmit(e) {
+    const SUPABASE_URL = 'https://bxleoiwksipniaghmewz.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ4bGVvaXdrc2lwbmlhZ2htZXd6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI5MzYwNjEsImV4cCI6MjA4ODUxMjA2MX0.-gRnv43Bk9kVJl79NITLXp0FugZAX829EzDJjH_jI0A';
+
+    async function handleSubmit(e) {
       e.preventDefault();
       const form = document.getElementById('notifyForm');
       const success = document.getElementById('successMsg');
-      form.style.display = 'none';
-      const note = document.querySelector('.notify-note');
-      if (note) note.style.display = 'none';
-      success.style.display = 'block';
+      const button = form.querySelector('button');
+      const input = form.querySelector('input[type="email"]');
+      const email = input.value.trim();
+
+      button.disabled = true;
+      button.textContent = 'Joining...';
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ email })
+        });
+
+        if (res.ok || res.status === 201) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } else if (res.status === 409) {
+          // Duplicate — still show success, just softer message
+          success.textContent = "You're already on the list. We'll be in touch!";
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          throw new Error(`status ${res.status}`);
+        }
+      } catch (err) {
+        button.disabled = false;
+        button.textContent = 'Get Early Access';
+        input.style.borderColor = 'hsl(0 70% 55% / 0.6)';
+        input.placeholder = 'Something went wrong — try again';
+        setTimeout(() => {
+          input.style.borderColor = '';
+          input.placeholder = 'Enter your email';
+        }, 3000);
+      }
     }
   </script>
 </body>
