@@ -433,7 +433,7 @@
     <div class="cta-stack">
       <form class="notify-form" id="notifyForm" onsubmit="handleSubmit(event)">
         <input type="email" placeholder="Enter your email" required aria-label="Email address" />
-        <button type="submit">Get Early Access</button>
+        <button type="submit">Get your ticket</button>
       </form>
       <div class="success-msg" id="successMsg">
         You're on the list. Opening day is coming soon.
@@ -499,7 +499,7 @@
         }
       } catch (err) {
         button.disabled = false;
-        button.textContent = 'Get Early Access';
+        button.textContent = 'Get your ticket';
         input.style.borderColor = 'hsl(0 70% 55% / 0.6)';
         input.placeholder = 'Something went wrong. Try again';
         setTimeout(() => {
